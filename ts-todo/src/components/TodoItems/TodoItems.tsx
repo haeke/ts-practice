@@ -1,6 +1,6 @@
 import React from "react";
 
-interface TodoItems {
+interface TodoItem {
   id: number;
   name: string;
   start: string;
@@ -12,8 +12,10 @@ interface TodoItems {
 }
 
 const TodoItems: React.SFC<{
-  todoItems: Array<TodoItems>;
-}> = ({ todoItems }) => {
+  todoItems: Array<TodoItem>;
+  handleDelete: (id: number) => void;
+  handleCompleted: (id: number) => void;
+}> = ({ todoItems, handleDelete, handleCompleted }) => {
   return (
     <section>
       {todoItems.map(item => (
@@ -23,6 +25,10 @@ const TodoItems: React.SFC<{
             {item.start} - {item.end}
           </p>
           <p>{item.timeSpent}</p>
+          <button onClick={() => handleDelete(item.id)}>Delete Item</button>
+          <button onClick={() => handleCompleted(item.id)}>
+            Mark Complete
+          </button>
         </div>
       ))}
     </section>

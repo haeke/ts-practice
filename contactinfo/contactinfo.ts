@@ -5,6 +5,11 @@ export interface HasPhoneNumber {
   phone: number;
 }
 
+// Interfaces can extend from other interfaces and only other interfaces. The interface below will add countryCode to name and phone when a variable of type HAsInternationslPhoneNumber is defined.
+export interface HasInternationalPhoneNumber extends HasPhoneNumber {
+  countryCode: string;
+}
+
 export interface HasEmail {
   name: string;
   email: string;

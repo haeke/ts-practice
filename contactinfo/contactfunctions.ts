@@ -1,4 +1,8 @@
-import { HasPhoneNumber, HasEmail } from "./contactinfo";
+import {
+  HasPhoneNumber,
+  HasEmail,
+  HasInternationalPhoneNumber
+} from "./contactinfo";
 // Defining functions require that arguments have a type and the return types are assigned.
 function sendEmail(to: HasEmail): { recipient: string; body: string } {
   return {
@@ -45,13 +49,15 @@ function contactPeople(method: "phone", ...people: HasPhoneNumber[]);
 // The contactPeople implementation should return a list of people with either email address or phone numbers. The method passed will determine whether the interface that the function will use is either the HasEmail or HasPhoneNumber interface. If you do not use the function signature overload the intersection between the type of object we want returned when sending an email or a phone number will not work. To see the problem in action comment out the signature overload functions and look at the function declaration contactPeople with method email with an object that includes a phone property.
 
 function contactPeople(
-  method: "email" | "phone",
-  ...people: (HasEmail | HasPhoneNumber)[]
+  method: "email" | "phone" | "international",
+  ...people: (HasEmail | HasPhoneNumber | HasInternationalPhoneNumber)[]
 ): void {
   if (method === "email") {
     (people as HasEmail[]).forEach(sendEmail);
-  } else {
+  } else if (method === "phone") {
     (people as HasPhoneNumber[]).forEach(sendTextMessage);
+  } else {
+    (people as HasInternationalPhoneNumber[]).forEach(sendTextMessage);
   }
 }
 // sending email with email type will work
@@ -60,3 +66,11 @@ contactPeople("email", { name: "ed", email: " e@gmail.com" });
 contactPeople("phone", { name: "ed", phone: 123412455 });
 // sending email with a phone type will cause an error.
 contactPeople("email", { name: "ed", phone: 123513251 });
+
+let internationalContact: HasInternationalPhoneNumber = {
+  name: "guin",
+  phone: 123412515,
+  countryCode: "UK"
+};
+
+console.log(internationalContact);

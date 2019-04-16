@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import TodoItems from "../TodoItems/TodoItems";
 
-interface TodoItem {
+export interface TodoItem {
   id: number;
   name: string;
   start: string;
@@ -41,6 +41,26 @@ class TodoForm extends Component<{}, State> {
     this.setState({
       [name]: value
     } as any);
+  };
+
+  handleDelete = (id: number): void => {
+    const { todoItems } = this.state;
+    let newItems = todoItems.filter((todo: TodoItem) => todo.id !== id);
+
+    this.setState({
+      todoItems: newItems
+    });
+  };
+
+  handleCompleted = (id: number): void => {
+    const { todoItems } = this.state;
+    let markComplete = todoItems.map((todo: TodoItem) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
+
+    this.setState({
+      todoItems: markComplete
+    });
   };
 
   // The handleSubmit component will add a new object to the todoItems array when a user submits the form.
@@ -120,7 +140,13 @@ class TodoForm extends Component<{}, State> {
             Create Task List Item
           </button>
         </form>
-        {todoItems.length > 0 && <TodoItems todoItems={todoItems} />}
+        {todoItems.length > 0 && (
+          <TodoItems
+            todoItems={todoItems}
+            handleDelete={this.handleDelete}
+            handleCompleted={this.handleCompleted}
+          />
+        )}
       </>
     );
   }
