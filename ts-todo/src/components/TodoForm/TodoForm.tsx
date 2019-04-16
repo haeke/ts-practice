@@ -92,21 +92,28 @@ class TodoForm extends Component<{}, State> {
       completed,
       active
     };
-    // create a new array consisting of the current items inside of the todoItems array and the newItem object.
-    let newItems = [...todoItems, newItem];
+    // make sure that the name, start, end, and timeSpent objects aren't blank
+    if (!name || !start || !end || !timeSpent) {
+      this.setState({
+        error: true
+      });
+    } else {
+      // create a new array consisting of the current items inside of the todoItems array and the newItem object.
+      let newItems = [...todoItems, newItem];
 
-    // update state with the new array consisting of the items that exist in state and the new item consisting of the form values.
-    this.setState(() => ({
-      todoItems: newItems,
-      id: id + 1,
-      name: "",
-      start: "",
-      end: "",
-      timeSpent: 0,
-      completed: false,
-      error: false,
-      active: true
-    }));
+      // update state with the new array consisting of the items that exist in state and the new item consisting of the form values.
+      this.setState(() => ({
+        todoItems: newItems,
+        id: id + 1,
+        name: "",
+        start: "",
+        end: "",
+        timeSpent: 0,
+        completed: false,
+        error: false,
+        active: true
+      }));
+    }
   };
   render() {
     const { name, start, end, timeSpent, todoItems, error } = this.state;

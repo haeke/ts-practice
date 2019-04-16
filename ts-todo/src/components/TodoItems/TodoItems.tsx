@@ -34,16 +34,23 @@ const TodoItems: React.SFC<{
           </h1>
           <p className="todoDate">Start Date: {item.start} </p>
           <p className="todoDate"> End Date: {item.end}</p>
-          <p className="todoTime">Time Spent: {item.timeSpent} hours</p>
-          <button className="todoButton" onClick={() => handleDelete(item.id)}>
-            Delete Item
-          </button>
-          <button
-            className="todoButton"
-            onClick={() => handleCompleted(item.id)}
-          >
-            Mark Complete
-          </button>
+          <p className="todoTime">
+            Time Spent: {item.timeSpent} {item.timeSpent > 1 ? "hours" : "hour"}
+          </p>
+          <div className="btnGroup">
+            <button
+              className="todoButton"
+              onClick={() => handleDelete(item.id)}
+            >
+              Delete Item
+            </button>
+            <button
+              className="todoButton"
+              onClick={() => handleCompleted(item.id)}
+            >
+              Mark Complete
+            </button>
+          </div>
         </div>
       ))}
     </section>
