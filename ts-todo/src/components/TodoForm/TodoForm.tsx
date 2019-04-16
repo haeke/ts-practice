@@ -43,12 +43,6 @@ class TodoForm extends Component<{}, State> {
     } as any);
   };
 
-  handleDelete = () => {
-    const { todoItems } = this.state;
-
-    console.log(todoItems);
-  };
-
   // The handleSubmit component will add a new object to the todoItems array when a user submits the form.
   handleSubmit = event => {
     // Use preventDefault so that the browser does not reload after the form is submitted.
