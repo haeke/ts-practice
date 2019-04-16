@@ -1,11 +1,11 @@
 // Define two Interface objects that have the same name property but different fields for phone number and email address.
 
-interface HasPhoneNumber {
+export interface HasPhoneNumber {
   name: string;
   phone: number;
 }
 
-interface HasEmail {
+export interface HasEmail {
   name: string;
   email: string;
 }
