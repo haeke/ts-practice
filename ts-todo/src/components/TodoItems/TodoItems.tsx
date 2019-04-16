@@ -20,7 +20,15 @@ const TodoItems: React.SFC<{
     <section>
       {todoItems.map(item => (
         <div key={item.id}>
-          <h1>{item.name}</h1>
+          <h1
+            style={
+              item.completed
+                ? { textDecoration: "line-through" }
+                : { textDecoration: "none" }
+            }
+          >
+            {item.name}
+          </h1>
           <p>
             {item.start} - {item.end}
           </p>
