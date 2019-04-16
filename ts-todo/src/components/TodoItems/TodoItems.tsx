@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./TodoItems.css";
+
 interface TodoItem {
   id: number;
   name: string;
