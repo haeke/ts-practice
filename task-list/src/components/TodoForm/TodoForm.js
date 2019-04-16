@@ -4,30 +4,7 @@ import TodoItems from "../TodoItems/TodoItems";
 
 import "./TodoForm.css";
 
-export interface TodoItem {
-  id: number;
-  name: string;
-  start: string;
-  end: string;
-  timeSpent: number;
-  completed: boolean;
-  active: boolean;
-}
-
-// This defines what the state object that the TodoForm will implement.
-// I passed an empty object to the TodoForm because there are no props that the TodoForm will use for now.
-interface State {
-  name: string;
-  start: string;
-  end: string;
-  timeSpent: number;
-  completed: boolean;
-  active: boolean;
-  error: boolean;
-  todoItems: Array<TodoItem>;
-}
-
-class TodoForm extends Component<{}, State> {
+class TodoForm extends Component {
   state = {
     id: 0,
     name: "",
@@ -39,31 +16,23 @@ class TodoForm extends Component<{}, State> {
     error: false,
     todoItems: []
   };
-  // The handleChange method is a reusable function that will be used to create the list of controlled inputs to change the values of the name, start, end and timeSpent.
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+  handleChange = event => {
     const { name, value } = event.target;
+
     this.setState({
       [name]: value
-    } as any);
-  };
-
-  handleDelete = (id: number): void => {
-    const { todoItems } = this.state;
-    let newItems = todoItems.filter((todo: TodoItem) => todo.id !== id);
-
-    this.setState({
-      todoItems: newItems
     });
   };
 
-  handleCompleted = (id: number): void => {
+  // The handleDelete function requires the id of the todoItem to be deleted. It uses the filter method to return all of the todoItems that do not contain the particular id.
+  handleDelete = id => {
     const { todoItems } = this.state;
-    let markComplete = todoItems.map((todo: TodoItem) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    );
+
+    let newItems = todoItems.filter(item => item.id !== id);
 
     this.setState({
-      todoItems: markComplete
+      todoItems: newItems
     });
   };
 
@@ -82,31 +51,37 @@ class TodoForm extends Component<{}, State> {
       completed,
       todoItems
     } = this.state;
-    // create an object consisting of the form values, increment the id by one for each newItem created.
-    let newItem = {
-      id,
-      name,
-      start,
-      end,
-      timeSpent,
-      completed,
-      active
-    };
-    // create a new array consisting of the current items inside of the todoItems array and the newItem object.
-    let newItems = [...todoItems, newItem];
+    if (!name || !start || !end || !timeSpent) {
+      this.setState({
+        error: true
+      });
+    } else {
+      // create an object consisting of the form values, increment the id by one for each newItem created.
+      let newItem = {
+        id,
+        name,
+        start,
+        end,
+        timeSpent,
+        completed,
+        active
+      };
+      // create a new array consisting of the current items inside of the todoItems array and the newItem object.
+      let newItems = [...todoItems, newItem];
 
-    // update state with the new array consisting of the items that exist in state and the new item consisting of the form values.
-    this.setState(() => ({
-      todoItems: newItems,
-      id: id + 1,
-      name: "",
-      start: "",
-      end: "",
-      timeSpent: 0,
-      completed: false,
-      error: false,
-      active: true
-    }));
+      // update state with the new array consisting of the items that exist in state and the new item consisting of the form values.
+      this.setState(() => ({
+        todoItems: newItems,
+        id: id + 1,
+        name: "",
+        start: "",
+        end: "",
+        timeSpent: 0,
+        completed: false,
+        active: true,
+        error: false
+      }));
+    }
   };
   render() {
     const { name, start, end, timeSpent, todoItems, error } = this.state;
@@ -169,11 +144,7 @@ class TodoForm extends Component<{}, State> {
           <h1 className="todoError">* Please Check for missing fields.</h1>
         )}
         {todoItems.length > 0 && (
-          <TodoItems
-            todoItems={todoItems}
-            handleDelete={this.handleDelete}
-            handleCompleted={this.handleCompleted}
-          />
+          <TodoItems todoItems={todoItems} handleDelete={this.handleDelete} />
         )}
       </React.Fragment>
     );

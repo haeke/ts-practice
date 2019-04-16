@@ -17,10 +17,11 @@ const TodoItems: React.SFC<{
   handleCompleted: (id: number) => void;
 }> = ({ todoItems, handleDelete, handleCompleted }) => {
   return (
-    <section>
+    <section className="todoItemContainer">
       {todoItems.map(item => (
-        <div key={item.id}>
+        <div className="todoCard" key={item.id}>
           <h1
+            className="todoHeader"
             style={
               item.completed
                 ? { textDecoration: "line-through" }
@@ -29,12 +30,16 @@ const TodoItems: React.SFC<{
           >
             {item.name}
           </h1>
-          <p>
-            {item.start} - {item.end}
-          </p>
-          <p>{item.timeSpent}</p>
-          <button onClick={() => handleDelete(item.id)}>Delete Item</button>
-          <button onClick={() => handleCompleted(item.id)}>
+          <p className="todoDate">Start Date: {item.start} </p>
+          <p className="todoDate"> End Date: {item.end}</p>
+          <p className="todoTime">Time Spent: {item.timeSpent} hours</p>
+          <button className="todoButton" onClick={() => handleDelete(item.id)}>
+            Delete Item
+          </button>
+          <button
+            className="todoButton"
+            onClick={() => handleCompleted(item.id)}
+          >
             Mark Complete
           </button>
         </div>

@@ -3,8 +3,8 @@ import React from "react";
 import "./TodoHeader.css";
 
 const TodoHeader: React.SFC<{ headerText: string }> = ({ headerText }) => (
-  <header className="App">
-    <h1 className="todoHeader">{headerText}</h1>
+  <header className="headerContainer">
+    <h1 className="headerText">{headerText}</h1>
   </header>
 );
 
