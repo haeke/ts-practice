@@ -24,3 +24,5 @@ class ContactEmail implements HasEmail {
 }
 
 let you = new ContactEmail("ed", "myemail@gmail.com");
+
+// The takeaway here is that "implements" defines a class that aligns with an interface.
