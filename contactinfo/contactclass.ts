@@ -61,3 +61,22 @@ abstract class AbstractContact implements HasPhoneNumber, HasEmail {
   // The sendEmail function needs to be implemented by a non-abstract class.
   abstract sendEmail(): void;
 }
+
+class UseAbstractContact extends AbstractContact {
+  constructor(public email: string, name: string, phone: number) {
+    // the use of super means that we are using the values of name and phone from the Abstract contact or whatever class we are "extending"
+    super(name, phone);
+  }
+  // The sendEmail function needs to be defined.
+  sendEmail() {
+    console.log("sending email...");
+  }
+}
+
+let implementabstract = new UseAbstractContact(
+  "email@gmail.com",
+  "edwin",
+  123545
+);
+
+console.log(implementabstract);
