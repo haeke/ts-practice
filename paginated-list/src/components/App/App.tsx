@@ -28,7 +28,7 @@ class App extends Component<{}, State> {
     term: ""
   };
 
-  handleChange = event => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     this.setState({
@@ -36,7 +36,7 @@ class App extends Component<{}, State> {
     });
   };
 
-  initialSearch = event => {
+  initialSearch = (event: any): void => {
     event.preventDefault();
 
     const { term, page } = this.state;
