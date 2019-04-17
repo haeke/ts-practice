@@ -4,7 +4,7 @@ import "./App.css";
 // updateResult function
 const updateResult = (result: any) => (prevState: any) => ({
   hits: [...prevState.hits, ...result.hits],
-  page: result.hits
+  page: result.page
 });
 
 const setResult = (result: any) => ({
@@ -44,6 +44,12 @@ class App extends Component<{}, State> {
     this.fetchStories(term, page);
   };
 
+  onPaginatedSearch = () => {
+    const { term, page } = this.state;
+    // request the next page of results for the last term that was entered.
+    this.fetchStories(term, page + 1);
+  };
+
   fetchStories = (value: string, page: number | string) =>
     fetch(getHackerNewsURL(value, page))
       .then(response => response.json())
@@ -54,7 +60,7 @@ class App extends Component<{}, State> {
       ? this.setState(setResult(result))
       : this.setState(updateResult(result));
   render() {
-    const { term } = this.state;
+    const { term, hits, page } = this.state;
     return (
       <div className="App">
         <div className="searchFormContainer">
@@ -68,9 +74,33 @@ class App extends Component<{}, State> {
             <button onClick={this.initialSearch}>Search Term</button>
           </form>
         </div>
+        <List
+          list={hits}
+          page={page}
+          onPaginatedSearch={this.onPaginatedSearch}
+        />
       </div>
     );
   }
 }
+
+const List = ({ list, page, onPaginatedSearch }) => (
+  <div>
+    <div className="list">
+      {list.map(item => (
+        <div className="listRow" key={item.objectID}>
+          <a href={item.url}>{item.title}</a>
+        </div>
+      ))}
+    </div>
+    <div className="interactions">
+      {page !== null && (
+        <button type="button" onClick={onPaginatedSearch}>
+          More Articles
+        </button>
+      )}
+    </div>
+  </div>
+);
 
 export default App;
