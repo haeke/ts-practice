@@ -4,12 +4,14 @@ import "./App.css";
 // updateResult function
 const updateResult = (result: any) => (prevState: any) => ({
   hits: [...prevState.hits, ...result.hits],
-  page: result.page
+  page: result.page,
+  isLoading: false
 });
 
 const setResult = (result: any) => ({
   hits: result.hits,
-  page: result.page
+  page: result.page,
+  isLoading: false
 });
 
 const getHackerNewsURL = (value: string, page: string | number) =>
@@ -19,13 +21,15 @@ interface State {
   hits: Array<any>;
   page: number;
   [key: string]: any;
+  isLoading: boolean;
 }
 
 class App extends Component<{}, State> {
   state = {
     hits: [],
     page: 0,
-    term: ""
+    term: "",
+    isLoading: false
   };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,17 +54,19 @@ class App extends Component<{}, State> {
     this.fetchStories(term, page + 1);
   };
 
-  fetchStories = (value: string, page: number | string) =>
+  fetchStories = (value: string, page: number | string) => {
+    this.setState({ isLoading: true });
     fetch(getHackerNewsURL(value, page))
       .then(response => response.json())
       .then(result => this.onSetResult(result, page));
+  };
 
   onSetResult = (result, page) =>
     page === 0
       ? this.setState(setResult(result))
       : this.setState(updateResult(result));
   render() {
-    const { term, hits, page } = this.state;
+    const { term, hits, isLoading, page } = this.state;
     return (
       <div className="App">
         <div className="searchFormContainer">
@@ -77,6 +83,7 @@ class App extends Component<{}, State> {
         <List
           list={hits}
           page={page}
+          isLoading={isLoading}
           onPaginatedSearch={this.onPaginatedSearch}
         />
       </div>
@@ -84,23 +91,37 @@ class App extends Component<{}, State> {
   }
 }
 
-const List = ({ list, page, onPaginatedSearch }) => (
-  <div>
-    <div className="list">
-      {list.map(item => (
-        <div className="listRow" key={item.objectID}>
-          <a href={item.url}>{item.title}</a>
-        </div>
-      ))}
+const List: React.SFC<{
+  list: Array<any>;
+  page: number;
+  isLoading: boolean;
+  onPaginatedSearch: () => void;
+}> = ({ list, page, isLoading, onPaginatedSearch }) => {
+  if (isLoading) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+  return (
+    <div>
+      <div className="list">
+        {list.map(item => (
+          <div className="listRow" key={item.objectID}>
+            <a href={item.url}>{item.title}</a>
+          </div>
+        ))}
+      </div>
+      <div className="interactions">
+        {page !== null && (
+          <button type="button" onClick={onPaginatedSearch}>
+            More Articles
+          </button>
+        )}
+      </div>
     </div>
-    <div className="interactions">
-      {page !== null && (
-        <button type="button" onClick={onPaginatedSearch}>
-          More Articles
-        </button>
-      )}
-    </div>
-  </div>
-);
+  );
+};
 
 export default App;
