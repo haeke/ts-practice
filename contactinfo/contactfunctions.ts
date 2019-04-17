@@ -45,6 +45,10 @@ console.log(getNameParts(contactname));
 
 // function signature overloading -
 function contactPeople(method: "email", ...people: HasEmail[]);
+function contactPeople(
+  method: "international",
+  ...people: HasInternationalPhoneNumber[]
+);
 function contactPeople(method: "phone", ...people: HasPhoneNumber[]);
 // The contactPeople implementation should return a list of people with either email address or phone numbers. The method passed will determine whether the interface that the function will use is either the HasEmail or HasPhoneNumber interface. If you do not use the function signature overload the intersection between the type of object we want returned when sending an email or a phone number will not work. To see the problem in action comment out the signature overload functions and look at the function declaration contactPeople with method email with an object that includes a phone property.
 
@@ -64,6 +68,12 @@ function contactPeople(
 contactPeople("email", { name: "ed", email: " e@gmail.com" });
 // sending phone with phone type will work
 contactPeople("phone", { name: "ed", phone: 123412455 });
+// sending international phone with type that will work
+contactPeople("international", {
+  name: "ed",
+  phone: 1235412,
+  countryCode: "UK"
+});
 // sending email with a phone type will cause an error.
 contactPeople("email", { name: "ed", phone: 123513251 });
 
