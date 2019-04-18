@@ -33,3 +33,26 @@ function outerTuple<T>(a: T) {
 let newItemPair = outerTuple(["Cool", "text"])(3);
 
 console.log(newItemPair);
+
+// Example of a dictionary that uses a Generic
+
+type Dict<T> = {
+  [key: string]: T;
+};
+// the mapDict function needs to indicate that it uses a generic of type T. The function should return an object of type Dict of transformed values.
+function mapDict<T, S>(
+  items: Dict<T>,
+  callback: (arg: T, idx: number) => S
+): Dict<S> {
+  let out: Dict<S> = {};
+  Object.keys(out).forEach((dictionaryKey, idx) => {
+    let listItem = items[dictionaryKey];
+    // make sure the typeof listItem is not undefined
+    if (typeof listItem !== "undefined") {
+      out[dictionaryKey] = callback(listItem, idx);
+    }
+  });
+  return out;
+}
+
+console.log(mapDict({ a: "a", b: "b" }, str => ({ key: str })));
