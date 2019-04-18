@@ -17,6 +17,7 @@ export interface TodoItem {
 // This defines what the state object that the TodoForm will implement.
 // I passed an empty object to the TodoForm because there are no props that the TodoForm will use for now.
 interface State {
+  id: number;
   name: string;
   start: string;
   end: string;
@@ -39,6 +40,21 @@ class TodoForm extends Component<{}, State> {
     error: false,
     todoItems: []
   };
+  // check to see if there exists a taskListTodo item in local storage
+  componentDidMount() {
+    // The localStorage.getItem function will return a string or a null,
+    let todoItems: any = JSON.parse(
+      localStorage.getItem("taskListTodos") || "[]"
+    );
+    if (todoItems.length > 0) {
+      // we want to get the id of the last item in the todo list so that we can update the id in state so that there are not id's that are the same.
+      let newId = todoItems.length - 1;
+      this.setState({
+        id: todoItems[newId].id,
+        todoItems
+      });
+    }
+  }
   // The handleChange method is a reusable function that will be used to create the list of controlled inputs to change the values of the name, start, end and timeSpent.
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -51,6 +67,8 @@ class TodoForm extends Component<{}, State> {
     const { todoItems } = this.state;
     let newItems = todoItems.filter((todo: TodoItem) => todo.id !== id);
 
+    // update local storage
+    localStorage.setItem("taskListTodos", JSON.stringify(newItems));
     this.setState({
       todoItems: newItems
     });
@@ -84,7 +102,7 @@ class TodoForm extends Component<{}, State> {
     } = this.state;
     // create an object consisting of the form values, increment the id by one for each newItem created.
     let newItem = {
-      id,
+      id: id + 1,
       name,
       start,
       end,
@@ -102,17 +120,26 @@ class TodoForm extends Component<{}, State> {
       let newItems = [...todoItems, newItem];
 
       // update state with the new array consisting of the items that exist in state and the new item consisting of the form values.
-      this.setState(() => ({
-        todoItems: newItems,
-        id: id + 1,
-        name: "",
-        start: "",
-        end: "",
-        timeSpent: 0,
-        completed: false,
-        error: false,
-        active: true
-      }));
+      this.setState(
+        () => ({
+          todoItems: newItems,
+          id: id + 1,
+          name: "",
+          start: "",
+          end: "",
+          timeSpent: 0,
+          completed: false,
+          error: false,
+          active: true
+        }),
+        () => {
+          // update local storage
+          localStorage.setItem(
+            "taskListTodos",
+            JSON.stringify(this.state.todoItems)
+          );
+        }
+      );
     }
   };
   render() {
