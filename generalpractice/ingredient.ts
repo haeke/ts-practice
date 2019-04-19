@@ -30,3 +30,24 @@ export default class Ingredient extends FoodFactory {
 
 let apple = new Ingredient("apple", "fruit", "140");
 apple.identify();
+
+class Fridge {
+  items: IngredientType[];
+  constructor(public ingredients: IngredientType[]) {
+    this.items = ingredients;
+  }
+
+  get(type: string) {
+    return this.items.filter((i: IngredientType) => i.type == type, 0);
+  }
+}
+
+const ingredients = [
+  { name: "water", type: "water", calories: "0" },
+  { name: "red_wine", type: "wine", calories: "20" },
+  { name: "white_wine", type: " wine", calories: "120" }
+];
+
+let Frigidiare = new Fridge(ingredients);
+
+console.log(Frigidiare.get("wine"));
