@@ -4,7 +4,8 @@ interface IngredientType {
   calories: string;
 }
 
-export default class Ingredient {
+// Abstract classes cannot be instantiated on its own. We use the extends propery to extend the Ingredient class above.
+abstract class FoodFactory implements IngredientType {
   constructor(
     public name: string,
     public type: string,
@@ -12,7 +13,8 @@ export default class Ingredient {
   ) {}
 }
 
-abstract class FoodFactory extends Ingredient {
+// The ingrident class extends the foodfactory abstract class.
+export default class Ingredient extends FoodFactory {
   constructor(
     public name: string,
     public type: string,
@@ -21,7 +23,10 @@ abstract class FoodFactory extends Ingredient {
     super(name, type, calories);
   }
 
-  public make(what: IngredientType) {
-    return new Ingredient(what.name, what.type, what.calories);
+  public identify() {
+    return console.log(`${this.name} ${this.type} ${this.calories}`);
   }
 }
+
+let apple = new Ingredient("apple", "fruit", "140");
+apple.identify();
