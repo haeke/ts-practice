@@ -20,3 +20,7 @@ function contact<K extends keyof CommunicationMethods>(
 contact("email", { name: "foo", email: "Email@gmail.com" });
 contact("phone", { name: "foo", phone: 1233435593 });
 contact("countryCode", { countryCode: 98757 });
+
+// Access to the values by mapping through the keys
+type allCommsKeys = keyof CommunicationMethods;
+type AllCommValues = CommunicationMethods[keyof CommunicationMethods];
