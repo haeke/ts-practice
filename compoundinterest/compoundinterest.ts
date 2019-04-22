@@ -36,15 +36,18 @@ function getRate() {
   console.table(totalsArray);
   totalsTable(totalsArray);
 }
-
+// Responsible for adding table row data for each year, interest and total inside the cost per year breakdown table.
 function totalsTable(totalsArray: Array<CompoundInterestTable>) {
+  // Get a reference to the table body element
   let body: Element = document.querySelector("#tbody");
+  // Iterate through the array of CompoundInterest objects
   totalsArray.forEach((item: CompoundInterestTable) => {
     let eachRow = `<tr>
       <td>${item.year}</td>
       <td>$${item.interestThatYear.toFixed(2)}</td>
       <td>$${item.loanTotal.toFixed(2)}</td>
       </tr>`;
+    // add each row to the DOM
     body.innerHTML += eachRow;
   });
 }
