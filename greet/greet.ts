@@ -23,7 +23,17 @@ class Student {
 function greeter(name: Person) {
   return `Hello, ${name.firstName} - ${name.lastName}!`;
 }
+
+function sendGreeting(): void {
+  console.log("sending a hello to the console.");
+}
+
 // user is an object with the firstName, and lastName keys.
 let user = new Student("Edwin", "S.", "Rivera");
 
-document.body.innerHTML = greeter(user);
+let greetingButton = document.querySelector(".greetButton");
+greetingButton.addEventListener("click", sendGreeting);
+
+let greeting = document.querySelector(".welcomeGreeting");
+
+greeting.innerHTML = greeter(user);

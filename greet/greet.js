@@ -14,6 +14,12 @@ var Student = /** @class */ (function () {
 function greeter(name) {
     return "Hello, " + name.firstName + " - " + name.lastName + "!";
 }
+function sendGreeting() {
+    console.log("sending a hello to the console.");
+}
 // user is an object with the firstName, and lastName keys.
 var user = new Student("Edwin", "S.", "Rivera");
-document.body.innerHTML = greeter(user);
+var greetingButton = document.querySelector(".greetButton");
+greetingButton.addEventListener("click", sendGreeting);
+var greeting = document.querySelector(".welcomeGreeting");
+greeting.innerHTML = greeter(user);

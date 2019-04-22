@@ -56,3 +56,13 @@ function mapDict<T, S>(
 }
 
 console.log(mapDict({ a: "a", b: "b" }, str => ({ key: str })));
+
+// Create a type guard  that uses a generic to narrow down the tpye object within a conditional block.
+
+function isDefined<T>(arg: T | undefined): arg is T {
+  return typeof arg !== "undefined";
+}
+
+let list = ["a", "b", "c", undefined, "d"];
+// Wil return a list of the objects that do not contain undefined.
+console.log(list.filter(isDefined));
