@@ -20,6 +20,7 @@ function getRate() {
         var loanTotalValue = totalInterest + totalPrincipal;
         totalsArray.push({
             year: i,
+            interestThatYear: parseFloat(totalInterest.toFixed(2)),
             loanTotal: parseFloat(loanTotalValue.toFixed(2))
         });
     }
