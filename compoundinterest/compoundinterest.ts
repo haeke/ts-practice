@@ -37,13 +37,13 @@ function getRate() {
   totalsTable(totalsArray);
 }
 
-function totalsTable(totalsArray) {
-  let body = document.querySelector("#tbody");
-  totalsArray.forEach(item => {
+function totalsTable(totalsArray: Array<CompoundInterestTable>) {
+  let body: Element = document.querySelector("#tbody");
+  totalsArray.forEach((item: CompoundInterestTable) => {
     let eachRow = `<tr>
       <td>${item.year}</td>
-      <td>$${item.interestThatYear}</td>
-      <td>$${item.loanTotal}</td>
+      <td>$${item.interestThatYear.toFixed(2)}</td>
+      <td>$${item.loanTotal.toFixed(2)}</td>
       </tr>`;
     body.innerHTML += eachRow;
   });

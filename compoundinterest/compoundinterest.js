@@ -26,7 +26,7 @@ function getRate() {
 function totalsTable(totalsArray) {
     var body = document.querySelector("#tbody");
     totalsArray.forEach(function (item) {
-        var eachRow = "<tr>\n      <td>" + item.year + "</td>\n      <td>$" + item.interestThatYear + "</td>\n      <td>$" + item.loanTotal + "</td>\n      </tr>";
+        var eachRow = "<tr>\n      <td>" + item.year + "</td>\n      <td>$" + item.interestThatYear.toFixed(2) + "</td>\n      <td>$" + item.loanTotal.toFixed(2) + "</td>\n      </tr>";
         body.innerHTML += eachRow;
     });
 }
