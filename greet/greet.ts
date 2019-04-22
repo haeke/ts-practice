@@ -7,7 +7,7 @@ interface Person {
 }
 
 class Student {
-   // full names string type annotation.
+  // full names string type annotation.
   fullName: string;
   //
   constructor(
