@@ -4,7 +4,8 @@ interface CompoundInterestTable {
   loanTotal: number;
 }
 
-function getRate() {
+function getRate(event) {
+  console.log(event);
   // get the values inside of the principal, duration and interest inputs. For this to work in TypeScript the HTMLInputElement needs to be cast before we can get the valueAsNumber property on the elements.
   let principal: number = (<HTMLInputElement>(
     document.querySelector("#principal")
@@ -44,4 +45,4 @@ function getRate() {
 // Get the getRateButton Selector
 let calculateCompoundInterest = document.querySelector("#getRateButton");
 // Add a click event that will calculate the compound interest.
-calculateCompoundInterest.addEventListener("click", getRate);
+calculateCompoundInterest.addEventListener("submit", getRate);

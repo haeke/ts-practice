@@ -4,18 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <title>Compound Interest Calculator</title>
   </head>
   <body>
-    <h1>Simple Compound Interest Calculator</h1>
-    <label>Principal</label>
-    <input type="number" id="principal" placeholder="Amount in $" />
-    <label for="Duration">Duration</label>
-    <input type="number" id="duration" placeholder="Duration in years." />
-    <label for="Loan Percentarge">Loan Percentage</label>
-    <input type="number" id="interest" placeholder="Interest rate %" />
-    <button id="getRateButton" onclick="getRate">Get Rates</button>
-    <div id="showTotal"></div>
+    <div class="container">
+      <h1 class="text-center">Simple Compound Interest Calculator</h1>
+      <form action="getRateButton">
+        <div class="form-group">
+          <label for="Principal Amount">Principal Amount</label>
+          <input
+            type="number"
+            name="principal"
+            id="principal"
+            class="form-control"
+            placeholder="Amount in $"
+          />
+          <small class="form-text text-muted"
+            >The principal amount that you want calculated.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="Duration in Years.">Duration In Years</label>
+          <input
+            type="number"
+            name="duration"
+            id="duration"
+            class="form-control"
+            placeholder="Duration in years."
+          />
+          <small class="form-text text-muted"
+            >The duration of the loan in years</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="Interest Rate">Interest Rate In %</label>
+          <input
+            type="number"
+            name="interest"
+            id="interest"
+            class="form-control"
+            placeholder="Interest Rate"
+          />
+          <small class="form-text text-muted"
+            >The interest rate that you enter will be divided by 100.</small
+          >
+        </div>
+        <button type="button" id="getRateButton" class="btn btn-primary">
+          Get Rates
+        </button>
+      </form>
+      <div id="showTotal"></div>
+    </div>
     <script src="compoundinterest.js"></script>
   </body>
 </html>
