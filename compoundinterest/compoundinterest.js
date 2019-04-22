@@ -1,12 +1,8 @@
 function getRate() {
     // get the values inside of the principal, duration and interest inputs. For this to work in TypeScript the HTMLInputElement needs to be cast before we can get the valueAsNumber property on the elements.
     var principal = (document.querySelector("#principal")).valueAsNumber;
-    console.log(principal);
     var duration = (document.querySelector("#duration")).valueAsNumber;
-    console.log(duration);
     var interest = (document.querySelector("#interest")).valueAsNumber;
-    console.log(interest);
-    var showTotal = document.querySelector("#showTotal");
     var totalInterest = 0;
     var totalPrincipal = principal;
     var totalsArray = [];
@@ -25,7 +21,14 @@ function getRate() {
         });
     }
     console.table(totalsArray);
-    showTotal.innerHTML = JSON.stringify(totalsArray);
+    totalsTable(totalsArray);
+}
+function totalsTable(totalsArray) {
+    var body = document.querySelector("#tbody");
+    totalsArray.forEach(function (item) {
+        var eachRow = "<tr>\n      <td>" + item.year + "</td>\n      <td>$" + item.interestThatYear + "</td>\n      <td>$" + item.loanTotal + "</td>\n      </tr>";
+        body.innerHTML += eachRow;
+    });
 }
 // Get the getRateButton Selector
 var calculateCompoundInterest = document.querySelector("#getRateButton");
