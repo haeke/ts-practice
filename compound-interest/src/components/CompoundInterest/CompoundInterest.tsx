@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import CompoundTable from "../CompoundTable/CompoundTable";
+import CompoundInputField from "../CompoundInputField/CompoundInputField";
 
 interface CompoundInterestTable {
   year: number;
@@ -79,55 +80,43 @@ class CompoundInterest extends Component<{}, State> {
     return (
       <>
         <div className="col-md-6 mx-auto">
-          <div className="form-group">
-            <label htmlFor="Principal Amount">Principal Amount</label>
-            <input
-              type="number"
-              name="principal"
-              value={principal}
-              onChange={this.handleChange}
-              className="form-control"
-              placeholder="Amount in $"
-            />
-            <small className="form-text text-muted">
-              The principal amount that you want calculated.
-            </small>
-          </div>
-          <div className="form-group">
-            <label htmlFor="Principal Amount">Duration In Years</label>
-            <input
-              type="number"
-              name="duration"
-              value={duration}
-              onChange={this.handleChange}
-              className="form-control"
-              placeholder="Duration in years."
-            />
-            <small className="form-text text-muted">
-              The duration of the loan in years.
-            </small>
-          </div>
-          <div className="form-group">
-            <label htmlFor="Principal Amount">Interest Rate In %</label>
-            <input
-              type="number"
-              name="interest"
-              value={interest}
-              onChange={this.handleChange}
-              className="form-control"
-              placeholder="Interest Rate"
-            />
-            <small className="form-text text-muted">
-              The interest rate that you enter will be divided by 100.
-            </small>
-            <button
-              type="button"
-              onClick={this.handleSubmit}
-              className="btn btn-primary"
-            >
-              Get Rates
-            </button>
-          </div>
+          {/* can refactor to make into its own component 
+            props - labelName, inputName, inputValue, inputType, placeholderName, inputDescription
+          */}
+          <CompoundInputField
+            labelName="Principal Amount"
+            inputName="principal"
+            inputValue={principal}
+            inputType="number"
+            placeholderName="Amount in $"
+            inputDescription="The principal amount that you want calculated."
+            handleChange={this.handleChange}
+          />
+          <CompoundInputField
+            labelName="Duration In Years"
+            inputName="duration"
+            inputValue={duration}
+            inputType="number"
+            placeholderName="Duration in years."
+            inputDescription=" The duration of the loan in years."
+            handleChange={this.handleChange}
+          />
+          <CompoundInputField
+            labelName="Interest Rate In %"
+            inputName="interest"
+            inputValue={interest}
+            inputType="number"
+            placeholderName="Interest Rate."
+            inputDescription="The interest rate that you enter will be divided by 100."
+            handleChange={this.handleChange}
+          />
+          <button
+            type="button"
+            onClick={this.handleSubmit}
+            className="btn btn-primary"
+          >
+            Get Rates
+          </button>
         </div>
         <CompoundTable totals={totals} />
       </>
