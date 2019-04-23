@@ -75,6 +75,7 @@ class CompoundInterest extends Component<{}, State> {
     });
   };
   render() {
+    const { principal, duration, interest, totals } = this.state;
     return (
       <>
         <div className="col-md-6 mx-auto">
@@ -83,7 +84,7 @@ class CompoundInterest extends Component<{}, State> {
             <input
               type="number"
               name="principal"
-              value={this.state.principal}
+              value={principal}
               onChange={this.handleChange}
               className="form-control"
               placeholder="Amount in $"
@@ -97,7 +98,7 @@ class CompoundInterest extends Component<{}, State> {
             <input
               type="number"
               name="duration"
-              value={this.state.duration}
+              value={duration}
               onChange={this.handleChange}
               className="form-control"
               placeholder="Duration in years."
@@ -111,7 +112,7 @@ class CompoundInterest extends Component<{}, State> {
             <input
               type="number"
               name="interest"
-              value={this.state.interest}
+              value={interest}
               onChange={this.handleChange}
               className="form-control"
               placeholder="Interest Rate"
@@ -128,7 +129,7 @@ class CompoundInterest extends Component<{}, State> {
             </button>
           </div>
         </div>
-        <CompoundTable totals={this.state.totals} />
+        <CompoundTable totals={totals} />
       </>
     );
   }

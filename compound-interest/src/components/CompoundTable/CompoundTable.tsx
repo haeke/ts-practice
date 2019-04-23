@@ -1,6 +1,14 @@
 import React from "react";
 
-const CompoundTable = ({ totals }) => {
+interface CompoundInterestTable {
+  year: number;
+  interestThatYear: number;
+  loanTotal: number;
+}
+
+const CompoundTable: React.SFC<{ totals: Array<CompoundInterestTable> }> = ({
+  totals
+}) => {
   if (totals.length > 0) {
     return (
       <div className="col-md-6 mx-auto mt-3">
