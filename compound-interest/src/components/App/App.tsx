@@ -11,20 +11,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
   return (
     <main>
-      <Header headerTitle="React TypeScript Playground" />
-      <div>
-        <Router>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route
-              path="/compound-interest"
-              exact
-              component={CompoundInterest}
-            />
-            <Route path="/book-site" exact component={BookSite} />
-          </Switch>
-        </Router>
-      </div>
+      <Router>
+        <Header headerTitle="React TypeScript Playground" />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/compound-interest" exact component={CompoundInterest} />
+          <Route path="/book-site" exact component={BookSite} />
+        </Switch>
+      </Router>
     </main>
   );
 };

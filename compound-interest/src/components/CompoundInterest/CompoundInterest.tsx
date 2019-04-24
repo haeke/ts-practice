@@ -78,60 +78,58 @@ class CompoundInterest extends Component<{}, State> {
   render() {
     const { principal, duration, interest, totals } = this.state;
     return (
-      <>
-        <div className="col-md-6 mx-auto">
-          <CompoundInputField
-            labelName="Principal Amount"
-            inputName="principal"
-            inputValue={principal}
-            inputType="number"
-            placeholderName="Amount in $"
-            inputDescription="The principal amount that you want calculated."
-            handleChange={this.handleChange}
-          />
-          <CompoundInputField
-            labelName="Duration In Years"
-            inputName="duration"
-            inputValue={duration}
-            inputType="number"
-            placeholderName="Duration in years."
-            inputDescription=" The duration of the loan in years."
-            handleChange={this.handleChange}
-          />
-          <CompoundInputField
-            labelName="Interest Rate In %"
-            inputName="interest"
-            inputValue={interest}
-            inputType="number"
-            placeholderName="Interest Rate."
-            inputDescription="The interest rate that you enter will be divided by 100."
-            handleChange={this.handleChange}
-          />
-          <button
-            type="button"
-            onClick={this.handleSubmit}
-            className="btn btn-primary"
-          >
-            Get Rates
-          </button>
-          <Table
-            tableHeader="Cost Per Year"
-            headerTitles={[
-              { title: "Year", id: 1 },
-              { title: "Interest That Year", id: 2 },
-              { title: "Loan Total", id: 3 }
-            ]}
-          >
-            {totals.map((total: any, index: number) => (
-              <tr key={index}>
-                <td>{total.year}</td>
-                <td>${total.interestThatYear.toFixed(2)}</td>
-                <td>${total.loanTotal.toFixed(2)}</td>
-              </tr>
-            ))}
-          </Table>
-        </div>
-      </>
+      <section className="col-md-6 mx-auto">
+        <CompoundInputField
+          labelName="Principal Amount"
+          inputName="principal"
+          inputValue={principal}
+          inputType="number"
+          placeholderName="Amount in $"
+          inputDescription="The principal amount that you want calculated."
+          handleChange={this.handleChange}
+        />
+        <CompoundInputField
+          labelName="Duration In Years"
+          inputName="duration"
+          inputValue={duration}
+          inputType="number"
+          placeholderName="Duration in years."
+          inputDescription=" The duration of the loan in years."
+          handleChange={this.handleChange}
+        />
+        <CompoundInputField
+          labelName="Interest Rate In %"
+          inputName="interest"
+          inputValue={interest}
+          inputType="number"
+          placeholderName="Interest Rate."
+          inputDescription="The interest rate that you enter will be divided by 100."
+          handleChange={this.handleChange}
+        />
+        <button
+          type="button"
+          onClick={this.handleSubmit}
+          className="btn btn-primary"
+        >
+          Get Rates
+        </button>
+        <Table
+          tableHeader="Cost Per Year"
+          headerTitles={[
+            { title: "Year", id: 1 },
+            { title: "Interest That Year", id: 2 },
+            { title: "Loan Total", id: 3 }
+          ]}
+        >
+          {totals.map((total: any, index: number) => (
+            <tr key={index}>
+              <td>{total.year}</td>
+              <td>${total.interestThatYear.toFixed(2)}</td>
+              <td>${total.loanTotal.toFixed(2)}</td>
+            </tr>
+          ))}
+        </Table>
+      </section>
     );
   }
 }

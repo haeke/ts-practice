@@ -61,7 +61,7 @@ class App extends Component<{}, State> {
       .then(result => this.onSetResult(result, page));
   };
 
-  onSetResult = (result, page) =>
+  onSetResult = (result: any, page: number | string) =>
     page === 0
       ? this.setState(setResult(result))
       : this.setState(updateResult(result));

@@ -4,6 +4,7 @@ interface TableHeaders {
   title: string;
   id: number;
 }
+// The Table component lets you create a table with a dynamic title, table headers and table data inside of the table body. The headerTitles need to contain a title and id propery for each table table row that you want to create inside the table body.
 
 const Table: React.SFC<{
   tableHeader: string;

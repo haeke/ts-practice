@@ -1,14 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header: React.SFC<{ headerTitle: string }> = ({ headerTitle }) => {
   return (
-    <header className="blog-header py-3">
-      <div className="row flex-nowrap justify-content-between align-items center">
-        <div className="col text-center">
-          <h1 className="display-4">{headerTitle}</h1>
-        </div>
-      </div>
-    </header>
+    <>
+      <header style={{ height: 70 }}>
+        <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <Link to="/" className="navbar-brand text-muted">
+            {headerTitle}
+          </Link>
+          <div className="navbar-collapse collapse" id="navbarCollapse">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <Link to="/" className="nav-link">
+                  Home
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    </>
   );
 };
 
