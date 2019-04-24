@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import CompoundTable from "../CompoundTable/CompoundTable";
+import Table from "../Table/Table";
 import CompoundInputField from "../CompoundInputField/CompoundInputField";
 
 interface CompoundInterestTable {
@@ -114,8 +114,23 @@ class CompoundInterest extends Component<{}, State> {
           >
             Get Rates
           </button>
+          <Table
+            tableHeader="Cost Per Year"
+            headerTitles={[
+              { title: "Year", id: 1 },
+              { title: "Interest That Year", id: 2 },
+              { title: "Loan Total", id: 3 }
+            ]}
+          >
+            {totals.map((total: any, index: number) => (
+              <tr key={index}>
+                <td>{total.year}</td>
+                <td>${total.interestThatYear.toFixed(2)}</td>
+                <td>${total.loanTotal.toFixed(2)}</td>
+              </tr>
+            ))}
+          </Table>
         </div>
-        <CompoundTable totals={totals} />
       </>
     );
   }
