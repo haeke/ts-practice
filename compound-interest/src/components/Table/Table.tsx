@@ -10,7 +10,7 @@ const Table: React.SFC<{
   headerTitles: Array<TableHeaders>;
 }> = ({ tableHeader, headerTitles, children }) => {
   return (
-    <div className="col-md-6 mx-auto mt-3">
+    <div className="mt-3">
       <h1 className="text-center">{tableHeader}</h1>
       <table className="table">
         <thead>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import CompoundInputField from "../CompoundInputField/CompoundInputField";
+import Table from "../Table/Table";
 
 interface BookSiteInterface {
   title: string;
@@ -80,14 +81,24 @@ class BookSite extends Component<{}, State> {
         >
           Add Book
         </button>
-        {this.state.books.length > 0 &&
-          this.state.books.map((book: BookSiteInterface, index: number) => (
-            <div className="col-md-6 py-4" key={index}>
-              <h6 className="text-muted">{book.title}</h6>
-              <h6 className="text-muted">{book.author}</h6>
-              <h6 className="text-muted">{book.ISBN}</h6>
-            </div>
-          ))}
+        {/* The Table component takes in the header and an array of the table headers that correspond to the table data that you want to display. */}
+        <Table
+          tableHeader="List Of Books"
+          headerTitles={[
+            { title: "Title", id: 1 },
+            { title: "Author", id: 2 },
+            { title: "ISBN", id: 3 }
+          ]}
+        >
+          {this.state.books.length > 0 &&
+            this.state.books.map((book: BookSiteInterface, index: number) => (
+              <tr key={index}>
+                <td>{book.title}</td>
+                <td>{book.author}</td>
+                <td>{book.ISBN}</td>
+              </tr>
+            ))}
+        </Table>
       </section>
     );
   }
