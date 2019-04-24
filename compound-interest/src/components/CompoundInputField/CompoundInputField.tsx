@@ -1,5 +1,7 @@
 import React from "react";
 
+// This component is used to render the individual compound input fields, included are the label, input and small HTML elements that are to be included for each compound input.
+
 const CompoundInputField: React.SFC<{
   labelName: string;
   inputName: string;
