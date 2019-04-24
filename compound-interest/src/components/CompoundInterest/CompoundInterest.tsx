@@ -80,9 +80,6 @@ class CompoundInterest extends Component<{}, State> {
     return (
       <>
         <div className="col-md-6 mx-auto">
-          {/* can refactor to make into its own component 
-            props - labelName, inputName, inputValue, inputType, placeholderName, inputDescription
-          */}
           <CompoundInputField
             labelName="Principal Amount"
             inputName="principal"
