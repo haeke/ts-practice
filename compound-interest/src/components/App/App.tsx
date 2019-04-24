@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../Home/Home";
 import Header from "../Header/Header";
 import CompoundInterest from "../CompoundInterest/CompoundInterest";
+import BookSite from "../BookSite/BookSite";
 // Bootstrap version 4.3.1
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,6 +21,7 @@ const App = () => {
               exact
               component={CompoundInterest}
             />
+            <Route path="/book-site" exact component={BookSite} />
           </Switch>
         </Router>
       </div>

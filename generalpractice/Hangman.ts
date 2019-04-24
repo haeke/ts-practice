@@ -47,7 +47,7 @@ class HangMan {
     if (this.status.playing) {
       console.log(`You have ${this.times} guesses left`);
     } else if (this.status.failed) {
-      console.log(`nice try! The word is ${this.word}`);
+      console.log(`nice try! The word is "${this.word}"`);
     } else {
       console.log("you guessed the right word!");
     }
@@ -91,8 +91,25 @@ let game = new HangMan(
 );
 
 game.makeGuess("k");
-
-game.makeGuess("q");
-console.log(game.guessedLetters);
 game.getGameStatus();
+console.log(game.times);
+game.makeGuess("q");
+game.getGameStatus();
+console.log(game.times);
+game.makeGuess("p");
+game.getGameStatus();
+console.log(game.times);
+game.makeGuess("f");
+game.getGameStatus();
+console.log(game.times);
+game.makeGuess("x");
+game.getGameStatus();
+console.log(game.times);
+game.makeGuess("l");
+game.getGameStatus();
+console.log(game.times);
+game.makeGuess("W");
+game.getGameStatus();
+console.log(game.times);
 game.statusMessage();
+console.log(game.guessedLetters);

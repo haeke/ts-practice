@@ -25,6 +25,14 @@ const Home = () => {
             projectDescription="Compound interest is the interest paid on the original principal and on the accumulated past interest."
           />
         </div>
+        <div className="col-md-6">
+          <ProjectCard
+            projectHeader="Book Site"
+            projectLink="/book-site"
+            projectDate="Apr 21"
+            projectDescription="A simple form that lets you keep track of the books that you're reading or have read or want to keep a reference to."
+          />
+        </div>
       </div>
     </div>
   );
