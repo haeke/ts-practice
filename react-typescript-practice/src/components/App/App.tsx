@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "../Home/Home";
 import Header from "../Header/Header";
+import Guess from "../Guess/Guess";
 import CompoundInterest from "../CompoundInterest/CompoundInterest";
 import BookSite from "../BookSite/BookSite";
 // Bootstrap version 4.3.1
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/compound-interest" exact component={CompoundInterest} />
           <Route path="/book-site" exact component={BookSite} />
+          <Route path="/guess" exact component={Guess} />
         </Switch>
       </Router>
     </main>
