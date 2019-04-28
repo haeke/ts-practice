@@ -27,7 +27,7 @@ class CompoundInterest extends Component<{}, State> {
     totals: []
   };
 
-  handleChange = event => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     this.setState({
@@ -35,7 +35,7 @@ class CompoundInterest extends Component<{}, State> {
     } as any);
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
     this.calculateTotals();

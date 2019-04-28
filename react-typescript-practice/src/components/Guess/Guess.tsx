@@ -5,13 +5,13 @@ import { heroes } from "../../api/api";
 import CompoundInputField from "../CompoundInputField/CompoundInputField";
 
 interface Hero {
-  localized_name: string;
-  url_full_portrait: string;
-  name: string;
-  url_small_portrait: string;
-  url_large_portrait: string;
-  url_vertical_portrait: string;
-  id: number;
+  localized_name?: string;
+  url_full_portrait?: string;
+  name?: string;
+  url_small_portrait?: string;
+  url_large_portrait?: string;
+  url_vertical_portrait?: string;
+  id?: number;
 }
 
 interface State {
@@ -35,14 +35,14 @@ class Guess extends Component<{}, State> {
     correct: 0
   };
 
-  handleChange = event => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
     this.findCharacter();
@@ -98,25 +98,38 @@ class Guess extends Component<{}, State> {
             inputName="character"
             inputType="text"
             inputValue={character}
-            placeholderName="Meepo..."
+            placeholderName="Click Guess or Press Enter..."
             handleChange={this.handleChange}
-            inputDescription="Enter as many heroes as you can guess."
+            inputDescription="Enter as many heroes as you can."
           />
-          <button type="submit" onClick={this.handleSubmit}>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={this.handleSubmit}
+          >
             Guess
           </button>
         </form>
-        {Object.keys(currentHero).length > 0 && (
-          <div>
-            <img
-              src={currentHero.url_large_portrait}
-              alt={currentHero.localized_name}
-              className="img-responsive"
-            />
-            <h1>{currentHero.localized_name}</h1>
-          </div>
-        )}
-        Current Count: {correct} / 114
+        {currentHero.localized_name !== "" ? (
+          <article
+            className="card my-3"
+            style={{
+              background:
+                "linear-gradient(101.99deg, #00463E 38.64%, #019C89 97.04%)"
+            }}
+          >
+            <div className="text-center my-3">
+              <img
+                src={currentHero.url_full_portrait}
+                alt={currentHero.localized_name}
+                className="img-responsive"
+              />
+
+              <h1 className="text-white">{currentHero.localized_name}</h1>
+            </div>
+          </article>
+        ) : null}
+        <span className="display-4">Current Count: {correct} / 114</span>
       </section>
     );
   }
