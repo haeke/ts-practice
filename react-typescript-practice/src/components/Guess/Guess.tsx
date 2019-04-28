@@ -4,6 +4,8 @@ import { heroes } from "../../api/api";
 
 import CompoundInputField from "../CompoundInputField/CompoundInputField";
 
+import "./Guess.css";
+
 interface Hero {
   localized_name?: string;
   url_full_portrait?: string;
@@ -111,13 +113,7 @@ class Guess extends Component<{}, State> {
           </button>
         </form>
         {currentHero.localized_name !== "" ? (
-          <article
-            className="card my-3"
-            style={{
-              background:
-                "linear-gradient(101.99deg, #00463E 38.64%, #019C89 97.04%)"
-            }}
-          >
+          <article className="card my-3 guessCard">
             <div className="text-center my-3">
               <img
                 src={currentHero.url_full_portrait}

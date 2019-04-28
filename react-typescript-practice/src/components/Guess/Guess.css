@@ -1,0 +1,14 @@
+.guessCard {
+  background: linear-gradient(101.99deg, #00463e 38.64%, #019c89 97.04%);
+  transition: all 0.8s ease-in-out;
+  animation: makeAppear 0.8s ease-in-out;
+}
+
+@keyframes makeAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
