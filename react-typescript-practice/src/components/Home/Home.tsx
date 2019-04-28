@@ -33,6 +33,14 @@ const Home = () => {
             projectDescription="A simple form that lets you keep track of the books that you're reading or have read or want to keep a reference to."
           />
         </div>
+        <div className="col-md-6">
+          <ProjectCard
+            projectHeader="Guesser"
+            projectLink="/Guess"
+            projectDate="Apr 21"
+            projectDescription="A simple form that lets you guess the names of the heroes from DOTA 2."
+          />
+        </div>
       </div>
     </div>
   );

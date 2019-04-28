@@ -46,7 +46,6 @@ class Guess extends Component<{}, State> {
     event.preventDefault();
 
     this.findCharacter();
-    console.log("submitting...");
   };
 
   findCharacter = () => {
@@ -117,7 +116,6 @@ class Guess extends Component<{}, State> {
             <h1>{currentHero.localized_name}</h1>
           </div>
         )}
-        <button onClick={this.charactersFound}>Heroes found count</button>
         Current Count: {correct} / 114
       </section>
     );
