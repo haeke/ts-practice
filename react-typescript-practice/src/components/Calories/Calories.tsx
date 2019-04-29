@@ -1,22 +1,15 @@
 import React, { Component } from "react";
 
-interface Height {
-  inches: string;
-  feet: string;
-}
-
-interface Activity {
-  moderate: boolean;
-  active: boolean;
-  veryActive: boolean;
-}
-
 interface State {
   gender: string;
   age: string;
   weight: string;
-  height: Height | {};
-  activity: Activity | {};
+  inches: string;
+  feet: string;
+  moderate: boolean;
+  active: boolean;
+  veryActive: boolean;
+  [key: string]: any;
 }
 
 class Calories extends Component<{}, State> {
@@ -24,13 +17,23 @@ class Calories extends Component<{}, State> {
     gender: "",
     age: "",
     weight: "",
-    height: {},
-    activity: {}
+    inches: "",
+    feet: "",
+    moderate: false,
+    active: false,
+    veryActive: false
   };
 
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {};
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    this.setState({
+      [name]: value
+    });
+  };
 
   render() {
+    const { gender, age, feet, inches, weight } = this.state;
     return (
       <section className="col-md-6 mx-auto">
         <form>
@@ -47,7 +50,13 @@ class Calories extends Component<{}, State> {
           </div>
           <div className="formGroup">
             <label htmlFor="Weight">Weight</label>
-            <input type="text" className="form-control" />
+            <input
+              type="text"
+              name="weight"
+              value={weight}
+              onChange={this.handleChange}
+              className="form-control"
+            />
           </div>
           <div className="formGroup">
             <div className="row">
@@ -60,6 +69,9 @@ class Calories extends Component<{}, State> {
                 <input
                   type="text"
                   placeholder="Feet..."
+                  name="feet"
+                  value={feet}
+                  onChange={this.handleChange}
                   className="form-control"
                 />
               </div>
@@ -67,6 +79,9 @@ class Calories extends Component<{}, State> {
                 <input
                   type="text"
                   placeholder="Inches..."
+                  name="inches"
+                  value={inches}
+                  onChange={this.handleChange}
                   className="form-control"
                 />
               </div>
