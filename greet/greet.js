@@ -19,7 +19,21 @@ function sendGreeting() {
 }
 // user is an object with the firstName, and lastName keys.
 var user = new Student("Edwin", "S.", "Rivera");
-var greetingButton = document.querySelector(".greetButton");
+var greetingButton = document.getElementById("greetButton");
 greetingButton.addEventListener("click", sendGreeting);
-var greeting = document.querySelector(".welcomeGreeting");
+var greeting = document.getElementById("welcomeGreeting");
 greeting.innerHTML = greeter(user);
+var _loop_1 = function (i) {
+    buttonGroup = document.getElementById("buttonGroup");
+    // create a button element
+    btn = document.createElement("button");
+    // add the text to the button
+    btn.appendChild(document.createTextNode("Button " + i));
+    // attach an event listener to do this: document.addEventListener
+    btn.addEventListener("click", function () { return console.log("clicked on button ", i); });
+    buttonGroup.appendChild(btn);
+};
+var buttonGroup, btn;
+for (var i = 0; i < 5; i++) {
+    _loop_1(i);
+}

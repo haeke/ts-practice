@@ -31,9 +31,22 @@ function sendGreeting(): void {
 // user is an object with the firstName, and lastName keys.
 let user = new Student("Edwin", "S.", "Rivera");
 
-let greetingButton = document.querySelector(".greetButton");
+let greetingButton = document.getElementById("greetButton");
 greetingButton.addEventListener("click", sendGreeting);
 
-let greeting = document.querySelector(".welcomeGreeting");
+let greeting = document.getElementById("welcomeGreeting");
 
 greeting.innerHTML = greeter(user);
+
+for (let i = 0; i < 5; i++) {
+  // get a reference to the buttonGroup div
+  var buttonGroup = document.getElementById("buttonGroup");
+  // create a button element
+  var btn = document.createElement("button");
+  // add the text to the button
+  btn.appendChild(document.createTextNode("Button " + i));
+  // add an event listener when a user clicks on the button
+  btn.addEventListener("click", () => console.log("clicked on button ", i));
+  // append the button inside the buttonGroup DOM element
+  buttonGroup.appendChild(btn);
+}
