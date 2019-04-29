@@ -74,6 +74,12 @@ class BookSite extends Component<{}, State> {
           inputDescription="The ISBN is a quick way to look up a book."
           handleChange={this.handleChange}
         />
+        <div className="form-group">
+          <select className="form-control" name="reading" id="reading">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
         <button
           type="button"
           onClick={this.handleSubmit}
