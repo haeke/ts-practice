@@ -28,6 +28,8 @@ class Calories extends Component<{}, State> {
     activity: {}
   };
 
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {};
+
   render() {
     return (
       <section className="col-md-6 mx-auto">
@@ -72,7 +74,11 @@ class Calories extends Component<{}, State> {
           </div>
           <div className="formGroup">
             <label htmlFor="Activity">Activity</label>
-            <input type="text" className="form-control" />
+            <select name="activity" id="activity" className="form-control">
+              <option value="moderate">Moderate</option>
+              <option value="active">Active</option>
+              <option value="veryActive">Very ACtive</option>
+            </select>
           </div>
           <div className="formGroup">
             <button className="btn btn-block btn-primary">Submit</button>
